@@ -55,10 +55,10 @@ ADD conf/cc-frontend.conf /etc/httpd/conf.d/cc-frontend.conf
 ADD conf/cc-proxy.conf /etc/httpd/conf.d/cc-proxy.conf
 
 ## post-installation: setting up Apache
-RUN mv /var/www/html/clustercontrol/ssl/server.crt /etc/pki/tls/certs/s9server.crt && \
-        mv /var/www/html/clustercontrol/ssl/server.key /etc/pki/tls/private/s9server.key && \
+RUN mv /root/myclustercontrol/var1/www1/html1/clustercontrol1/ssl1/tls/certs/s9server.crt /etc/pki/tls/certs/s9server.crt && \
+        mv /root/myclustercontrol/var1/www1/html1/clustercontrol1/ssl1/tls/private/s9server.key /etc/pki/tls/private/s9server.key && \
         sed -i 's|AllowOverride None|AllowOverride All|g' /etc/httpd/conf/httpd.conf && \
-        cp -f /var/www/html/clustercontrol/bootstrap.php.default /var/www/html/clustercontrol/bootstrap.php && \
+        cp -f /root/myclustercontrol/var1/www1/html1/clustercontrol/clustercontrol/bootstrap.php.default /var/www/html/clustercontrol/bootstrap.php && \
         chmod -R 777 /var/www/html/clustercontrol/app/tmp && \
         chmod -R 777 /var/www/html/clustercontrol/app/upload && \
         chown -Rf apache:apache /var/www/html/clustercontrol/ && \
@@ -72,5 +72,5 @@ COPY deploy-container.sh /deploy-container.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 ## cmon 9500, cmon-tls 9501, cmon-events 9510, cmon-ssh 9511, netcat 9999
-EXPOSE 80 443 9500 9501 9510 9511 9999 19501 9443
+EXPOSE 80 443 9500 9501 9510 9511 9999 8080 9443
 HEALTHCHECK CMD curl -sSf http://localhost/clustercontrol/ > /dev/null || exit 1
