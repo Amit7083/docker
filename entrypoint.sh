@@ -402,7 +402,7 @@ if ! $(/usr/bin/grep -q dba /etc/passwd); then
 	fi
 	
 	CCUI2_CONFIG=/var/www/html/clustercontrol2/config.js
-	sed -i "s|^  CMON_API_URL.*|  CMON_API_URL: 'https:\/\/${DOCKER_HOST_ADDRESS}:19501\/v2',|g" $CCUI2_CONFIG
+	sed -i "s|^  CMON_API_URL.*|  CMON_API_URL: 'https:\/\/${DOCKER_HOST_ADDRESS}:8080\/v2',|g" $CCUI2_CONFIG
 fi
 
 # Clean up
