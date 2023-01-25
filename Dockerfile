@@ -1,6 +1,8 @@
 ## ClusterControl 1.9.5-5827, Percona Server 5.6, CentOS 7 64bit, PHP 7.3 (Remi)
 
 FROM centos:7
+ENV http_proxy="http://10.130.162.10:8080"
+ENV https_proxy="http://10.130.162.10:8080"
 MAINTAINER Ashraf Sharif <ashraf@severalnines.com>
 
 ## list of packages to be installed by package manager
@@ -74,3 +76,5 @@ ENTRYPOINT ["/entrypoint.sh"]
 ## cmon 9500, cmon-tls 9501, cmon-events 9510, cmon-ssh 9511, netcat 9999
 EXPOSE 80 443 9500 9501 9510 9511 9999 8080 9443
 HEALTHCHECK CMD curl -sSf http://localhost/clustercontrol/ > /dev/null || exit 1
+ENV http_proxy=""
+ENV https_proxy=""
