@@ -24,6 +24,8 @@ RUN yum -y install wget epel-release && \
 
 # install Prometheus suite
 ENV STAGING_DIR /root/packages
+RUN cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo &&\
+    cp /etc/yum.repos.d/epel.repo /etc/yum.repos.d/CentOS-Base.repo
 RUN mkdir -p ${STAGING_DIR} && \
         wget http://libslack.org/daemon/download/daemon-0.6.4-1.x86_64.rpm -P ${STAGING_DIR} && \
         wget https://github.com/prometheus/prometheus/releases/download/v2.29.2/prometheus-2.29.2.linux-amd64.tar.gz -P ${STAGING_DIR} && \
